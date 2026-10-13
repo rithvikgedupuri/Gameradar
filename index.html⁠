@@ -18,17 +18,13 @@
             max-width: 600px;
             margin: 0 auto;
         }
-        .card {
+        .card, .quiz-box, .review-box {
             background-color: #1e293b;
             border: 2px solid #38bdf8;
             border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
+            padding: 20px;
+            margin: 20px 0;
             text-align: left;
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: scale(1.02);
         }
         .tag {
             display: inline-block;
@@ -39,14 +35,7 @@
             font-size: 12px;
             margin-right: 5px;
         }
-        .review-box {
-            background-color: #1e293b;
-            border: 2px solid #38bdf8;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-        input, textarea, button {
+        select, input, textarea, button {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
@@ -54,7 +43,7 @@
             border: none;
             box-sizing: border-box;
         }
-        input, textarea {
+        select, input, textarea {
             background-color: #0f172a;
             color: #fff;
             border: 1px solid #334155;
@@ -70,16 +59,17 @@
             background-color: #0284c7;
             color: #fff;
         }
-        #reviews-list {
-            margin-top: 20px;
-            text-align: left;
+        #quiz-result, #reviews-list {
+            margin-top: 15px;
+            background-color: #0f172a;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #38bdf8;
         }
         .user-review {
-            background-color: #0f172a;
-            padding: 10px;
-            border-radius: 6px;
             margin-top: 10px;
-            border-left: 3px solid #38bdf8;
+            padding-top: 10px;
+            border-top: 1px solid #334155;
         }
     </style>
 </head>
@@ -87,35 +77,65 @@
 
     <div class="container">
         <h1>📡 Game Radar</h1>
-        <p>Discover top games & share your thoughts!</p>
+        <p>Your interactive hub for top games & community reviews!</p>
 
-        <h2>Top Recommendations</h2>
-        
-        <div class="card">
-            <h3>Zelda: Tears of the Kingdom</h3>
-            <span class="tag">Switch</span>
-            <p>An epic open-world adventure floating above the clouds.</p>
+        <!-- QUIZ SECTION -->
+        <div class="quiz-box">
+            <h2>🎮 Game Finder Quiz</h2>
+            <label for="genreSelect">Choose your favorite genre:</label>
+            <select id="genreSelect">
+                <option value="adventure">Open World / Adventure</option>
+                <option value="rpg">RPG / Action</option>
+                <option value="shooter">Shooter / Action</option>
+            </select>
+
+            <label for="platformSelect">Preferred platform:</label>
+            <select id="platformSelect">
+                <option value="switch">Nintendo Switch</option>
+                <option value="pc">PC / Mobile</option>
+                <option value="all">Any Platform</option>
+            </select>
+
+            <button onclick="recommendGame()">Find My Game!</button>
+            <div id="quiz-result">Answer the quiz above to get a tailored recommendation!</div>
         </div>
 
-        <div class="card">
-            <h3>Genshin Impact</h3>
-            <span class="tag">iPad</span> <span class="tag">PC</span> <span class="tag">Console</span>
-            <p>Vast RPG world with awesome combat and team combos.</p>
-        </div>
-
+        <!-- REVIEW SECTION -->
         <div class="review-box">
-            <h2>Write a Review</h2>
+            <h2>📝 Community Reviews</h2>
             <input type="text" id="gameName" placeholder="Game Title">
-            <textarea id="reviewText" rows="3" placeholder="What did you think of this game?"></textarea>
+            <textarea id="reviewText" rows="3" placeholder="Write your review here..."></textarea>
             <button onclick="addReview()">Submit Review</button>
 
             <div id="reviews-list">
-                <h3>Community Reviews</h3>
+                <strong>Recent Reviews:</strong>
+                <div class="user-review">
+                    <strong>Zelda: Tears of the Kingdom</strong>
+                    <p>Absolute masterpiece of an open world!</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        function recommendGame() {
+            const genre = document.getElementById('genreSelect').value;
+            const platform = document.getElementById('platformSelect').value;
+            const resultBox = document.getElementById('quiz-result');
+
+            let recommendation = "Minecraft - You can't go wrong with endless creative building!";
+
+            if (genre === 'adventure') {
+                recommendation = "Zelda: Tears of the Kingdom 🗡️ - An incredible open-world journey full of sky islands and creativity.";
+            } else if (genre === 'rpg') {
+                recommendation = "Genshin Impact ⚔️ - A vast action-RPG world with deep combat and exploration.";
+            } else if (genre === 'shooter') {
+                recommendation = "Apex Legends 🎯 - Fast-paced multiplayer action with unique character abilities.";
+            }
+
+            resultBox.innerHTML = `<strong>Recommended for you:</strong><br>${recommendation}`;
+        }
+
         function addReview() {
             const game = document.getElementById('gameName').value;
             const text = document.getElementById('reviewText').value;
