@@ -18,22 +18,13 @@
             max-width: 600px;
             margin: 0 auto;
         }
-        .card, .quiz-box, .review-box {
+        .quiz-box, .review-box {
             background-color: #1e293b;
             border: 2px solid #38bdf8;
             border-radius: 12px;
             padding: 20px;
             margin: 20px 0;
             text-align: left;
-        }
-        .tag {
-            display: inline-block;
-            background-color: #0284c7;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            margin-right: 5px;
         }
         select, input, textarea, button {
             width: 100%;
@@ -120,7 +111,6 @@
     <script>
         function recommendGame() {
             const genre = document.getElementById('genreSelect').value;
-            const platform = document.getElementById('platformSelect').value;
             const resultBox = document.getElementById('quiz-result');
 
             let recommendation = "Minecraft - You can't go wrong with endless creative building!";
