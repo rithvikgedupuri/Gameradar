@@ -1,37 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Game Radar</title>
-  <style>
-    body {
-      background-color: #0f172a;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-    }
-    h1 {
-      color: #38bdf8;
-      font-size: 36px;
-    }
-    .card {
-      background-color: #1e293b;
-      border: 2px solid #38bdf8;
-      border-radius: 12px;
-      padding: 20px;
-      max-width: 400px;
-      margin: 20px auto;
-    }
-  </style>
+    <title>Game Radar</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #38bdf8;
+            font-size: 36px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #1e293b;
+            border: 2px solid #38bdf8;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        .tag {
+            display: inline-block;
+            background-color: #0284c7;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        .review-box {
+            background-color: #1e293b;
+            border: 2px solid #38bdf8;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: none;
+            box-sizing: border-box;
+        }
+        input, textarea {
+            background-color: #0f172a;
+            color: #fff;
+            border: 1px solid #334155;
+        }
+        button {
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0284c7;
+            color: #fff;
+        }
+        #reviews-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .user-review {
+            background-color: #0f172a;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border-left: 3px solid #38bdf8;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>📡 Welcome to Game Radar!</h1>
+    <div class="container">
+        <h1>📡 Game Radar</h1>
+        <p>Discover top games & share your thoughts!</p>
 
-  <div class="card">
-    <h2>My Gaming Hub</h2>
-    <p>Check back soon for awesome games, news, and builds!</p>
-  </div>
+        <h2>Top Recommendations</h2>
+        
+        <div class="card">
+            <h3>Zelda: Tears of the Kingdom</h3>
+            <span class="tag">Switch</span>
+            <p>An epic open-world adventure floating above the clouds.</p>
+        </div>
+
+        <div class="card">
+            <h3>Genshin Impact</h3>
+            <span class="tag">iPad</span> <span class="tag">PC</span> <span class="tag">Console</span>
+            <p>Vast RPG world with awesome combat and team combos.</p>
+        </div>
+
+        <div class="review-box">
+            <h2>Write a Review</h2>
+            <input type="text" id="gameName" placeholder="Game Title">
+            <textarea id="reviewText" rows="3" placeholder="What did you think of this game?"></textarea>
+            <button onclick="addReview()">Submit Review</button>
+
+            <div id="reviews-list">
+                <h3>Community Reviews</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addReview() {
+            const game = document.getElementById('gameName').value;
+            const text = document.getElementById('reviewText').value;
+
+            if (game.trim() === '' || text.trim() === '') {
+                alert('Please fill out both fields!');
+                return;
+            }
+
+            const reviewsList = document.getElementById('reviews-list');
+            const newReview = document.createElement('div');
+            newReview.className = 'user-review';
+            newReview.innerHTML = `<strong>${game}</strong><p>${text}</p>`;
+
+            reviewsList.appendChild(newReview);
+
+            document.getElementById('gameName').value = '';
+            document.getElementById('reviewText').value = '';
+        }
+    </script>
 
 </body>
 </html>
