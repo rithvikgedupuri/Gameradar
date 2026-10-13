@@ -9,7 +9,7 @@ Follow this step-by-step mission checklist to build your very own gaming portal 
 
 - [ ] **Log in to GitHub:** Open your browser and go to your GitHub account.
 - [ ] **Create a New Repository:** Click the **`+`** icon in the upper-right corner and select **New repository**.
-- [ ] **Name Your Project:** Choose a cool name for your gaming hub (e.g., `my-gaming-radar` or `pixel-news`).
+- [ ] **Name Your Project:** Choose a cool name for your gaming hub (e.g., `rithvikgedupuri.github.io`).
 - [ ] **Set Visibility to Public:** Ensure **Public** is selected so your friends can see your site.
 - [ ] **Add a Initialize File:** Check the box that says **Add a README file**.
 - [ ] **Launch:** Click the green **Create repository** button at the bottom.
