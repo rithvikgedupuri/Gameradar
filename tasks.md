@@ -37,8 +37,31 @@ Follow this step-by-step mission checklist to build your very own gaming portal 
 - [ ] **Secure Your Site:** Once the green "DNS check successful" message appears, check the box for **Enforce HTTPS**.
 
 ---
+# Mission 3: Configure Custom Domains to Root Domain
 
-## 🏆 Mission 3: Write Your Top 5 Gaming Countdown
+To point your new subdomain (`gamerador.rameshgedupuri.space`) to your GitHub Pages site, you need to configure settings in both your **GoDaddy DNS panel** and your **GitHub repository**. 
+
+## Step 1: Add a CNAME Record in GoDaddy
+1. Click the black **Add New Record** button located right above your DNS records table.
+2. Fill out the fields with the following details:
+   * **Type:** `CNAME`
+   * **Name:** `gamerador`
+   * **Value (or Data):** `rithvikgedupuri.github.io.` *(Note: Match this to the target username displayed in your existing `www` record)*
+   * **TTL:** `1 Hour` (or default)
+3. Save the record.
+
+## Step 2: Configure Your GitHub Repository
+1. Go to the GitHub repository containing the project you want this subdomain to display.
+2. Click on **Settings** (the gear icon at the top of the repository).
+3. Scroll down to the **Pages** section in the left sidebar.
+4. Under **Custom domain**, type your complete subdomain: `gamerador.rameshgedupuri.space`.
+5. Click **Save**.
+
+## Step 3: Enforce HTTPS
+* Once GitHub successfully verifies your domain ownership (this usually takes a few minutes to an hour), check the box for **Enforce HTTPS** in that same GitHub Pages settings menu.
+
+---
+## 🏆 Mission 4: Write Your Top 5 Gaming Countdown
 *Time to add content just like a real game journalist on GamesRadar!*
 
 - [ ] **Edit index.html:** Open your `index.html` file on GitHub and click the **Pencil icon ✏️** to edit it.
@@ -65,7 +88,7 @@ Follow this step-by-step mission checklist to build your very own gaming portal 
 
 ---
 
-## 📊 Mission 4: Settle the Debate (Create a Live Voting Poll)
+## 📊 Mission 5: Settle the Debate (Create a Live Voting Poll)
 *Get your audience involved by letting them vote on their favorite platforms or games.*
 
 - [ ] **Design Your Poll:** Go to StrawPoll.com. Type a fun gaming question (e.g., *Xbox vs. PlayStation vs. Nintendo*) and add your options. Click **Create Poll**.
