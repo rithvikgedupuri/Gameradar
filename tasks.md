@@ -466,7 +466,7 @@ This game teaches logical estimation (guessing higher or lower) to find a hidden
 
 ```
 
-### 🌐 Part D: Deploy the New 4-Box Arcade Hub (`index.html`)
+### 🌐 Part F: Deploy the New 4-Box Arcade Hub (`index.html`)
 Now update your primary entry page to display all four games side-by-side in a clean, responsive layout.
 
 1. Open your **`index.html`** file on GitHub.
