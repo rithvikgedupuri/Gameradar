@@ -285,6 +285,187 @@ This game teaches logical estimation (guessing higher or lower) to find a hidden
 
 ---
 
+### Part D: 
+1. Add the `clicker.html`
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Mania</title>
+    <style>
+        body {
+            background-color: #121214;
+            color: #ffffff;
+            font-family: sans-serif;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .game-box {
+            background-color: #1e1e24;
+            border: 2px solid #03dac6;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .btn {
+            background-color: #6200ee;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #03dac6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-box">
+        <h2>👾 Clicker Mania</h2>
+        <div style="font-size: 2rem; color: #ff4757; margin: 20px 0;">Score: <span id="score">0</span></div>
+        <button class="btn" id="clickBtn">💥 CLICK!</button>
+        <br>
+        <a href="index.html" class="back-link">⬅️ Back to Hub</a>
+    </div>
+
+    <script>
+        let score = 0;
+        document.getElementById('clickBtn').addEventListener('click', () => {
+            score++;
+            document.getElementById('score').innerText = score;
+        });
+    </script>
+
+</body>
+</html>
+
+```
+
+### Part E: Add `reaction.html`
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflex Reflex</title>
+    <style>
+        body {
+            background-color: #121214;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .game-box {
+            background-color: #1e1e24;
+            border: 2px solid #03dac6;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        #target {
+            width: 200px;
+            height: 200px;
+            background-color: #ff4757;
+            border-radius: 50%;
+            margin: 30px auto;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            user-select: none;
+            transition: background 0.1s;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #03dac6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="game-box">
+        <h2>⚡ Reflex Tester</h2>
+        <p>Wait for the red circle to turn <strong>GREEN</strong>, then click it as fast as you can!</p>
+        
+        <div id="target">CLICK TO START</div>
+        
+        <h3 id="result">Best Time: -- ms</h3>
+        
+        <a href="index.html" class="back-link">⬅️ Back to Hub</a>
+    </div>
+
+    <script>
+        const target = document.getElementById('target');
+        const result = document.getElementById('result');
+        
+        let startTime, endTime;
+        let timerTimeout;
+        let gameState = 'idle'; // idle, waiting, green
+
+        target.addEventListener('click', () => {
+            if (gameState === 'idle') {
+                // Start the test sequence
+                target.style.backgroundColor = '#ff4757';
+                target.innerText = 'WAIT FOR IT...';
+                result.innerText = 'Get ready...';
+                gameState = 'waiting';
+                
+                // Random delay between 1.5 and 4 seconds
+                const delay = Math.random() * 2500 + 1500;
+                
+                timerTimeout = setTimeout(() => {
+                    target.style.backgroundColor = '#2ed573';
+                    target.innerText = 'CLICK!!!';
+                    startTime = Date.now();
+                    gameState = 'green';
+                }, delay);
+                
+            } else if (gameState === 'waiting') {
+                // Cheated! Clicked too early
+                clearTimeout(timerTimeout);
+                target.style.backgroundColor = '#ffa502';
+                target.innerText = 'TOO EARLY!';
+                result.innerText = 'Trigger happy! Try again.';
+                gameState = 'idle';
+                
+            } else if (gameState === 'green') {
+                // Successful hit
+                endTime = Date.now();
+                const reactionTime = endTime - startTime;
+                target.style.backgroundColor = '#6200ee';
+                target.innerText = 'RESET';
+                result.innerText = `Your Time: ${reactionTime} ms!`;
+                gameState = 'idle';
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+```
+
 ### 🌐 Part D: Deploy the New 4-Box Arcade Hub (`index.html`)
 Now update your primary entry page to display all four games side-by-side in a clean, responsive layout.
 
@@ -364,6 +545,33 @@ Now update your primary entry page to display all four games side-by-side in a c
         <div class="card">
             <h3>Clicker Mania</h3>
             <p>Score points by clicking as fast as you can before time runs out!</p>
+            <a href="clicker.html" class="btn">Play Now</a>
+        </div>
+
+        <!-- Game 2 -->
+        <div class="card">
+            <h3>⚡ Reflex Tester</h3>
+            <p>Test your speed! Click the target the exact millisecond it flashes green.</p>
+            <a href="reaction.html" class="btn" style="background-color: #03dac6; color: #121214;">Play Now</a>
+        </div>
+
+        <!-- Game 3 -->
+        <div class="card">
+            <h3>🧮 Math Attack!</h3>
+            <p>A high-speed math quest. Rapid addition helper to gain points!</p>
+            <a href="math.html" class="btn" style="background-color: #ff4757;">Play Now</a>
+        </div>
+
+        <!-- Game 4 -->
+        <div class="card">
+            <h3>🔮 Number Wizard</h3>
+            <p>Use elimination logic to hunt down the system's hidden secret number.</p>
+            <a href="guess.html" class="btn" style="background-color: #ffa502; color: #121214;">Play Now</a>
+        </div>
+    </div>
+
+</body>
+</html>
 
 ```
 
