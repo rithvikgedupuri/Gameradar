@@ -111,3 +111,260 @@ To point your new subdomain (`gamerador.rameshgedupuri.space`) to your GitHub Pa
 ```
 - [ ] **Link It Up:** Replace `PASTE_YOUR_STRAWPOLL_LINK_HERE` with the actual link you copied from StrawPoll. Keep the quotes around it!
 - [ ] **Publish Live:** Click **Commit changes**. Open your site, click your shiny new button, and see if it works!
+
+
+# 🚀 Mission 6: Build a 4-Game Learning Arcade
+
+Welcome to your next developer milestone! In this mission, you will back up your current layout, create two brand-new educational games, and deploy a responsive 4-game dashboard.
+
+---
+
+### 💾 Part A: Save a Backup of Your Existing Homepage
+Before changing any code, it is best practice to save a backup of your working setup.
+
+1. **Open your repository:** Go to GitHub and open your gaming hub repository.
+2. **Open the file:** Click on `index.html`.
+3. **Copy everything:** Click inside the code window, press `Ctrl + A` (or `Cmd + A` on Mac) to highlight everything, and copy it (`Ctrl + C` / `Cmd + C`).
+4. **Save it locally:** Open a text editor on your computer (like Notepad or TextEdit), paste the code inside, and save the file on your machine as `index_backup.txt`.
+
+---
+
+### 🧮 Part B: Create the "Math Attack" Game (`math.html`)
+This game helps practice rapid addition. Kids can later edit the code to try multiplication or use larger numbers!
+
+1. Go back to your main repository page on GitHub.
+2. Click **Add file** ➔ **Create new file**.
+3. Name the file exactly: `math.html`
+4. Paste the following code into the editor:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Attack</title>
+    <style>
+        body { background-color: #121214; color: #ffffff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 50px 20px; }
+        .game-box { background-color: #1e1e24; border: 2px solid #03dac6; border-radius: 12px; padding: 40px; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .question { font-size: 2.5rem; margin: 20px 0; font-weight: bold; color: #6200ee; background: #fff; padding: 10px; border-radius: 8px; }
+        input { font-size: 1.5rem; padding: 10px; width: 60%; text-align: center; border-radius: 6px; border: none; margin-bottom: 20px; color: #000; }
+        .btn { background-color: #03dac6; color: #121214; border: none; padding: 12px 25px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        .back-link { display: inline-block; margin-top: 25px; color: #03dac6; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="game-box">
+        <h2>🧮 Math Attack!</h2>
+        <p>Solve the problem as fast as you can to score XP!</p>
+        
+        <div class="question" id="problem">? + ?</div>
+        <input type="number" id="answerInput" placeholder="Type answer..." autofocus>
+        <br>
+        <button class="btn" id="submitBtn">SUBMIT</button>
+        
+        <h3 style="color: #ff4757;">Score: <span id="score">0</span> XP</h3>
+        
+        <a href="index.html" class="back-link">⬅️ Back to Hub</a>
+    </div>
+
+    <script>
+        let score = 0;
+        let num1, num2, correctAnswer;
+
+        const problemDisplay = document.getElementById('problem');
+        const input = document.getElementById('answerInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const scoreDisplay = document.getElementById('score');
+
+        function generateQuestion() {
+            // CODE CHALLENGE: Change the 10 to 50 or 100 to make the numbers bigger!
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            
+            // CODE CHALLENGE: Change "+" to "*" to turn this into a multiplication game!
+            correctAnswer = num1 + num2; 
+            problemDisplay.innerText = `${num1} + ${num2}`;
+            input.value = '';
+            input.focus();
+        }
+
+        function checkAnswer() {
+            if (parseInt(input.value) === correctAnswer) {
+                score += 10;
+                scoreDisplay.innerText = score;
+                alert("🎉 Correct! +10 XP");
+                generateQuestion();
+            } else {
+                alert("❌ Oops! Try that one again.");
+            }
+        }
+
+        submitBtn.addEventListener('click', checkAnswer);
+        input.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkAnswer(); });
+
+        generateQuestion();
+    </script>
+</body>
+</html>
+```
+5. Scroll down and click the green **Commit changes...** button.
+
+---
+
+### 🔮 Part C: Create the "Number Wizard" Game (`guess.html`)
+This game teaches logical estimation (guessing higher or lower) to find a hidden number between 1 and 50.
+
+1. Go back to your main repository page on GitHub.
+2. Click **Add file** ➔ **Create new file**.
+3. Name the file exactly: `guess.html`
+4. Paste the following code into the editor:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Wizard</title>
+    <style>
+        body { background-color: #121214; color: #ffffff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 50px 20px; }
+        .game-box { background-color: #1e1e24; border: 2px solid #03dac6; border-radius: 12px; padding: 40px; max-width: 400px; margin: 0 auto; }
+        input { font-size: 1.5rem; padding: 10px; width: 50%; text-align: center; border-radius: 6px; border: none; margin: 20px 0; color: #000; }
+        .btn { background-color: #6200ee; color: white; border: none; padding: 12px 25px; font-size: 1.1rem; border-radius: 6px; cursor: pointer; }
+        .back-link { display: inline-block; margin-top: 25px; color: #03dac6; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="game-box">
+        <h2>🔮 Number Wizard</h2>
+        <p>I am thinking of a number between <strong>1 and 50</strong>. Can you find it?</p>
+        
+        <input type="number" id="guessInput" placeholder="??">
+        <br>
+        <button class="btn" id="guessBtn">GUESS</button>
+        
+        <h3 id="hint" style="color: #ffa502; margin-top: 20px;">Take a guess!</h3>
+        <p>Attempts: <span id="attempts">0</span></p>
+        
+        <a href="index.html" class="back-link">⬅️ Back to Hub</a>
+    </div>
+
+    <script>
+        // CODE CHALLENGE: Change 50 to 100 to expand the guessing universe range!
+        const secretNumber = Math.floor(Math.random() * 50) + 1;
+        let attempts = 0;
+
+        const input = document.getElementById('guessInput');
+        const button = document.getElementById('guessBtn');
+        const hint = document.getElementById('hint');
+        const attemptsDisplay = document.getElementById('attempts');
+
+        button.addEventListener('click', () => {
+            const userGuess = parseInt(input.value);
+            attempts++;
+            attemptsDisplay.innerText = attempts;
+
+            if (userGuess === secretNumber) {
+                hint.style.color = "#2ed573";
+                hint.innerText = `🎉 YOU WIN! The number was ${secretNumber}! It took ${attempts} tries.`;
+            } else if (userGuess < secretNumber) {
+                hint.innerText = "📈 HIGHER! Try a bigger number.";
+            } else if (userGuess > secretNumber) {
+                hint.innerText = "📉 LOWER! Try a smaller number.";
+            }
+            input.value = '';
+        });
+    </script>
+</body>
+</html>
+```
+5. Scroll down and click the green **Commit changes...** button.
+
+---
+
+### 🌐 Part D: Deploy the New 4-Box Arcade Hub (`index.html`)
+Now update your primary entry page to display all four games side-by-side in a clean, responsive layout.
+
+1. Open your **`index.html`** file on GitHub.
+2. Click the **Pencil icon ✏️** to edit it.
+3. Completely delete everything currently inside the file.
+4. Paste this full master portal layout code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Portal</title>
+    <style>
+        body {
+            background-color: #121214;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #6200ee, #03dac6);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #1e1e24;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #03dac6;
+        }
+        .card h3 { margin-top: 0; color: #03dac6; }
+        .btn {
+            display: inline-block;
+            background-color: #6200ee;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .btn:hover { background-color: #3700b3; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎮 Kid's Coding Arcade </h1>
+        <p>Play the games, then open up GitHub to change how they work!</p>
+    </header>
+
+    <div class="grid">
+        <!-- Game 1 -->
+        <div class="card">
+            <h3>Clicker Mania</h3>
+            <p>Score points by clicking as fast as you can before time runs out!</p>
+
+```
+
+
