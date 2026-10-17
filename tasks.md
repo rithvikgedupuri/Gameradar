@@ -576,3 +576,136 @@ Now update your primary entry page to display all four games side-by-side in a c
 ```
 
 
+# 🚀 Mission 6: Build a 4-Game Learning Arcade
+
+Welcome to your next developer milestone! In this mission, you will back up your current layout, configure your custom GoDaddy subdomain, and deploy your updated gaming dashboard.
+
+---
+
+### 🌐 Part A: Configure Your New Custom Domain in GoDaddy
+Before updating your GitHub files, you need to point your new subdomain to GitHub's servers.
+
+1. **Log into GoDaddy:** Go to your GoDaddy dashboard and navigate to **My Products**.
+2. **Open DNS settings:** Find your domain `rameshgedupuri.space` and click **Manage DNS**.
+3. **Remove old pointer:** Find the old `CNAME` record with the Host `gameradar` and delete it.
+4. **Add new pointer:** Click **Add New Record** and apply these settings:
+   * **Type:** `CNAME`
+   * **Name:** `games.fun`
+   * **Value:** `rithvikgedupuri.github.io` *(Replace with your actual GitHub username)*
+   * **TTL:** Default
+5. **Save the record:** Click save and allow a few minutes for the internet to update.
+
+---
+
+### 💻 Part B: Update Your Custom Domain in GitHub Pages
+Now, configure your repository settings to look for the new web address.
+
+1. **Open your repository:** Go to GitHub and open your gaming hub repository.
+2. **Open settings:** Click on the ⚙️ **Settings** tab at the top of your repository.
+3. **Navigate to Pages:** On the left sidebar menu, click on **Pages**.
+4. **Update the domain:** Scroll down to **Custom domain**, delete the old URL, and type **`games.fun.rameshgedupuri.space`**.
+5. **Save and secure:** Click **Save**, wait for the system to process, and check the box to **Enforce HTTPS**.
+
+
+# 🛠️ Mission 7: Build gamerador website
+
+Welcome to your next developer milestone! In this mission, you will create a brand-new repository for your project, set up your main webpage file, and restore your backed-up layout.
+
+---
+
+### 🚀 Part A: Create Your Repository and Restore Code
+
+1. **Log in to GitHub:** Open your browser and go to your GitHub account.
+2. **Create a New Repository:** Click the `+` icon in the upper-right corner and select **New repository**.
+3. **Name Your Project:** Choose a cool name for your gaming hub (e.g., `gamerador`).
+4. **Set Visibility to Public:** Ensure **Public** is selected so your friends can see your site.
+5. **Add an Initialize File:** Check the box that says **Add a README file**.
+6. **Launch:** Click the green **Create repository** button at the bottom.
+7. **Create the Main Page:** Inside your new repository, click **Add file** ➔ **Create new file**. Name the file exactly `index.html`.
+8. **Restore Your Layout:** Open your local `index_backup.txt` file, copy everything inside, and paste it directly into the code window of your new `index.html` file.
+
+### 🌐 Part B: Connect Your Custom Domain to GitHub Pages
+
+Once your repository has your code, you need to point your custom domain to your newly created GitHub project.
+
+1. **Open repository settings:** Inside your `gameradar` repository, click on the ⚙️ **Settings** tab at the top.
+2. **Navigate to Pages:** On the left sidebar menu, click on **Pages** under the "Code and automation" block.
+3. **Configure the custom domain:** Scroll down to the **Custom domain** section, type your domain address `gameradar.rameshgedupuri.space` into the text box, and click **Save**.
+4. **Enforce security:** Wait a few moments for GitHub to verify the site, then check the box next to **Enforce HTTPS** to keep your website secure.
+```
+
+# 🚀 Mission 8: Deploy the Arcade Hub on a Brand-New Root Domain
+
+Welcome to your next major development milestone! In this mission, you will learn how to step away from subdomains and launch your 4-game learning arcade hub on its own dedicated standalone root domain website.
+
+---
+
+### 🌐 Part A: Purchase and Point Your New Domain in GoDaddy
+
+When you configure a root domain (the main address without subdomains), GitHub uses special **Apex IP addresses** instead of a single CNAME text record.
+
+1. **Buy your domain:** Purchase your new domain name (e.g., `mycoolarcade.com`) inside your [GoDaddy Dashboard](https://godaddy.com "GoDaddy Official Website").
+2. **Open the DNS settings:** Navigate to **My Products**, find your brand-new root domain, and click **Manage DNS**.
+3. **Add Apex Records (A Records):** GitHub Pages uses four distinct fallback IP addresses for root domain management. Click **Add New Record** and create **four separate A Records** using these values:
+   * **First Record:** Type: `A` | Name: `@` | Value: `185.199.108.153` | TTL: `Default`
+   * **Second Record:** Type: `A` | Name: `@` | Value: `185.199.109.153` | TTL: `Default`
+   * **Third Record:** Type: `A` | Name: `@` | Value: `185.199.110.153` | TTL: `Default`
+   * **Fourth Record:** Type: `A` | Name: `@` | Value: `185.199.111.153` | TTL: `Default`
+4. **Configure the www Redirect:** To make sure your website still opens if someone writes `://yourdomain.com`, find or create a `CNAME` record with these parameters:
+   * **Type:** `CNAME`
+   * **Name:** `www`
+   * **Value:** `infinitetechstack.github.io.` *(Don't forget the period at the very end)*
+
+---
+
+### 💻 Part B: Assign the Root Domain inside GitHub Pages
+
+Now, update your repository settings so GitHub recognizes requests hitting those four IP addresses.
+
+1. **Access your codebase:** Go to [GitHub](https://github.com "GitHub Homepage") and open your arcade project repository (e.g., `gamerador`).
+2. **Open routing paths:** Click on the ⚙️ **Settings** tab located along the top layout menu bar.
+3. **Navigate to Pages:** From the left sidebar options list, select **Pages** inside the "Code and automation" block.
+4. **Bind your custom URL:** Scroll down to the **Custom domain** field, clear out any old references, and type your new root domain cleanly:
+   `mycoolarcade.com` *(Replace this with the actual domain name you bought)*
+5. **Save changes:** Click **Save**. GitHub will automatically insert a clean `CNAME` confirmation text file straight into your main code branch directory.
+
+---
+
+### 🔒 Part C: Issue SSL and Verify
+
+1. **Enforce HTTPS Encryption:** Right under your saved custom domain path, check the box for **Enforce HTTPS**. 
+   * *Note: If it is unclickable, wait roughly 10 minutes. GitHub is actively pinging GoDaddy's four new A-records to safely issue a free SSL security certificate.*
+2. **Live Test:** Once the status dot flips from yellow to a green checkmark, open a clean browser view and load your new root domain address to enjoy your standalone arcade network!
+
+# 🚀 Mission 9: Deploy the Arcade Hub on a Brand-New Root Domain
+
+1. **what we have now** now we have domains with rameshgedupuri.space and newly created domain
+2. **correct tasks.md:** now take a backup of this **tasks.md** and modify the tasks.md and adjust the steps into smaller or easy way to understand to overcome multiple domains
+
+# 🚀 Mission 10: Implement all the steps
+
+1. **now we have structured format** Redploy all the steps and adjust tasks.md as required
+
+### 🏆 MISSION COMPLETE STATUS
+
+```text
+======================================================================
+  🎮 PLAYER 1: infinitetechstack              [ LEVEL 10 MAX ACHIEVED ]
+======================================================================
+
+  [✓] GoDaddy Apex Routing Records ........................... SECURED!
+  [✓] GitHub Pages Deployment Engine ......................... ALIGNED!
+  [✓] SSL Global Security Protocol ......................... ENFORCED!
+  [✓] Custom Standalone Website Portal ......................... LIVE!
+
+  ------------------------------------------------------------------
+  🎉 CONGRATULATIONS, Master Rithvik!
+  ------------------------------------------------------------------
+  You have successfully transitioned from a nested project directory 
+  to a fully-branded, global-facing gaming platform. Your servers 
+  are active, your code is clean, and your arcade network is officially 
+  broadcasting worldwide on its own root domain!
+======================================================================
+```
+
+
